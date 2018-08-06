@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 100%;
+            height: 100px;
+            background-color:  cornflowerblue;
+            position: absolute;
+            bottom: 50%;
+            transform: translateY(50%);
+            text-align: center;
+            font-size: 30px;
+            line-height: 100px;
+        }
+        input{
+            top: 10%;
+            position: absolute;
+            left:50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 34px;
+            background-color: cornflowerblue;
+            color: white;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<form action="http://10.0.20.140:8000/out" method="post">
+    <input type="submit" value="退出">
+</form>
+<script>
+        var xhr;
+        xhr = new XMLHttpRequest();
+        xhr.onreadystatechange=function() {
+            if (xhr.readyState==4 && xhr.status==200) {
+                document.getElementById("box").innerHTML= xhr.responseText};
+        };
+        xhr.open("post","http://10.0.20.140:8000/form",true);
+        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xhr.send(null);
+</script>
+</body>
+</html>
